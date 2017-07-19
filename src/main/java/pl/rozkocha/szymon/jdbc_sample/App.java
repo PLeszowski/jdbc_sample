@@ -26,12 +26,14 @@ public class App
         DatabaseServer databaseServer = new DatabaseServer(
         		"localhost", "javadb", "jdbc", "pass123");
         
-        UsersDAO usersDAO = new DatabaseUsersDAO(databaseServer);
+        DatabaseUsersDAO usersDAO = new DatabaseUsersDAO(databaseServer);
         
         List<User> users = usersDAO.get();
         
         for(User user : users) {
         	System.out.println(user.toString());
         }
+        
+        usersDAO.close();
     }
 }
