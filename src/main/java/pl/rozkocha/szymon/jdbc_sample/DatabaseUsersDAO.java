@@ -61,20 +61,64 @@ public class DatabaseUsersDAO implements UsersDAO {
 
 	@Override
 	public void add(User user) {
-		// TODO Auto-generated method stub
-
+		Statement statement = null;
+        try {
+			statement = server.createStatement();
+			
+			statement.executeUpdate("insert into users (name, surname) values (\"" +
+					user.getName() + "\", \"" + user.getSurname() + "\");");
+        } catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
 	public void update(User user) {
-		// TODO Auto-generated method stub
-
+		Statement statement = null;
+        try {
+			statement = server.createStatement();
+			
+			statement.executeUpdate("update users set name = \"" + user.getName() + 
+					"\", surname = \"" + user.getSurname() + "\" where id = " + user.getId());
+        } catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 	@Override
 	public void delete(User user) {
-		// TODO Auto-generated method stub
-
+		Statement statement = null;
+        try {
+			statement = server.createStatement();
+			
+			statement.executeUpdate("delete from users where id = " + user.getId());
+        } catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if(statement != null) {
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+			}
+		}
 	}
 
 }
