@@ -7,6 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DatabaseUsersDAO implements UsersDAO {
+	private static DatabaseUsersDAO instance = null;
+	
+	public static void init(DatabaseServer server) {
+		if(instance == null) {
+			instance = new DatabaseUsersDAO(server);
+		}
+	}
+	
+	public static DatabaseUsersDAO getInstance() {
+		return instance;
+	}
+	
 	public static final String ID_COLUMN = "id";
 	public static final String NAME_COLUMN = "name";
 	public static final String SURNAME_COLUMN = "surname";
@@ -15,7 +27,7 @@ public class DatabaseUsersDAO implements UsersDAO {
 	
 	private DatabaseServer server;
 	
-	public DatabaseUsersDAO(DatabaseServer server) {
+	private DatabaseUsersDAO(DatabaseServer server) {
 		this.server = server;
 		
 		try {

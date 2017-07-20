@@ -25,8 +25,6 @@ import javafx.fxml.*;
  */ 
 public class App extends Application 
 {
-	private DatabaseUsersDAO usersDAO;
-	
     public static void main( String[] args )
     {
     	try {
@@ -50,38 +48,10 @@ public class App extends Application
 		DatabaseServer databaseServer = new DatabaseServer(
         		"localhost", "javadb", "jdbc", "pass123");
 		
-		usersDAO = new DatabaseUsersDAO(databaseServer);
+		DatabaseUsersDAO.init(databaseServer);
 		
-		TextField name = new TextField();
-		TextField surname = new TextField();
-		Label fullName = new Label();
+		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main.fxml"));
 		
-		Button addButton = new Button();
-        addButton.setText("Dodaj");
-        addButton.setOnAction((event) -> {
-        	fullName.setText(name.getText() + " " + surname.getText() + " added!");
-        	usersDAO.add(new User(0, name.getText(), surname.getText()));
-        });
-        
-        Button getButton = new Button();
-        getButton.setText("Get");
-        getButton.setOnAction((event) -> {
-        	List<User> users = usersDAO.get();
-        	
-        	users.forEach((user) -> {
-        		System.out.println(user.toString());
-        	});
-        });
-        
-        VBox root = new VBox();
-        root.getChildren().add(name);
-        root.getChildren().add(surname);
-        root.getChildren().add(fullName);
-        root.getChildren().add(addButton);
-        root.getChildren().add(getButton);
-		
-		//Parent root = FXMLLoader.load(getClass().getResource("./main.fxml"));
-
         Scene scene = new Scene(root, 300, 250);
 
         primaryStage.setTitle("Osoby");
@@ -91,6 +61,6 @@ public class App extends Application
 
 	@Override
 	public void stop() throws Exception {
-		usersDAO.close();
+		DatabaseUsersDAO.getInstance().close();
 	}
 }

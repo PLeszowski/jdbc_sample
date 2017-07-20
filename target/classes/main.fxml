@@ -5,8 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane
-    xmlns:fx="http://javafx.com/fxml" alignment="center" hgap="10" vgap="10">
-<padding><Insets top="25" right="25" bottom="10" left="25"/></padding>
-
-</GridPane>
+<VBox fx:controller="pl.rozkocha.szymon.MainController"
+	  xmlns:fx="http://javafx.com/fxml">
+	<TextField fx:id="name"/>
+	<TextField fx:id="surname"/>
+	<Label fx:id="fullName"/>
+	<Button text="Pobierz" onAction="#get"/>
+	<Button text="Dodaj" onAction="#add"/>
+</VBox>
