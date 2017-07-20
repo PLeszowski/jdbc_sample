@@ -29,7 +29,6 @@ public class DatabaseUsersDAO implements UsersDAO {
 		server.close();
 	}
 	
-	@Override
 	public List<User> get() {
 		List<User> users = new ArrayList<>();
 		
@@ -59,7 +58,6 @@ public class DatabaseUsersDAO implements UsersDAO {
 		return users;
 	}
 
-	@Override
 	public void add(User user) {
 		Statement statement = null;
         try {
@@ -80,7 +78,6 @@ public class DatabaseUsersDAO implements UsersDAO {
 		}
 	}
 
-	@Override
 	public void update(User user) {
 		Statement statement = null;
         try {
@@ -101,7 +98,6 @@ public class DatabaseUsersDAO implements UsersDAO {
 		}
 	}
 
-	@Override
 	public void delete(User user) {
 		Statement statement = null;
         try {
