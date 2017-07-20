@@ -56,18 +56,29 @@ public class App extends Application
 		TextField surname = new TextField();
 		Label fullName = new Label();
 		
-		Button btn = new Button();
-        btn.setText("Dodaj");
-        btn.setOnAction((event) -> {
+		Button addButton = new Button();
+        addButton.setText("Dodaj");
+        addButton.setOnAction((event) -> {
         	fullName.setText(name.getText() + " " + surname.getText() + " added!");
         	usersDAO.add(new User(0, name.getText(), surname.getText()));
+        });
+        
+        Button getButton = new Button();
+        getButton.setText("Get");
+        getButton.setOnAction((event) -> {
+        	List<User> users = usersDAO.get();
+        	
+        	users.forEach((user) -> {
+        		System.out.println(user.toString());
+        	});
         });
         
         VBox root = new VBox();
         root.getChildren().add(name);
         root.getChildren().add(surname);
         root.getChildren().add(fullName);
-        root.getChildren().add(btn);
+        root.getChildren().add(addButton);
+        root.getChildren().add(getButton);
 		
 		//Parent root = FXMLLoader.load(getClass().getResource("./main.fxml"));
 
@@ -82,6 +93,4 @@ public class App extends Application
 	public void stop() throws Exception {
 		usersDAO.close();
 	}
-	
-	
 }
