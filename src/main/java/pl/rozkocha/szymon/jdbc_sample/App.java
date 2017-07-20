@@ -25,33 +25,33 @@ import javafx.fxml.*;
  */ 
 public class App extends Application 
 {
+	private DatabaseUsersDAO usersDAO;
+	
     public static void main( String[] args )
     {
-    	launch(args);
+    	try {
+ 			DriverManager.registerDriver(new Driver());
+ 		} catch (SQLException e1) {
+ 			// TODO Auto-generated catch block
+ 			e1.printStackTrace();
+ 		}
     	
-        try {
-			DriverManager.registerDriver(new Driver());
-		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+    	launch(args);
         
-        DatabaseServer databaseServer = new DatabaseServer(
-        		"localhost", "javadb", "jdbc", "pass123");
-        
-        DatabaseUsersDAO usersDAO = new DatabaseUsersDAO(databaseServer);
-        
-        List<User> users = usersDAO.get();
+        /*List<User> users = usersDAO.get();
         
         users.forEach((user) -> {
         	System.out.println(user.toString());
-        });
-        
-        usersDAO.close();
+        });*/
     }
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		DatabaseServer databaseServer = new DatabaseServer(
+        		"localhost", "javadb", "jdbc", "pass123");
+		
+		usersDAO = new DatabaseUsersDAO(databaseServer);
+		
 		TextField name = new TextField();
 		TextField surname = new TextField();
 		Label fullName = new Label();
@@ -59,7 +59,8 @@ public class App extends Application
 		Button btn = new Button();
         btn.setText("Dodaj");
         btn.setOnAction((event) -> {
-        	fullName.setText(name.getText() + " " + surname.getText());
+        	fullName.setText(name.getText() + " " + surname.getText() + " added!");
+        	usersDAO.add(new User(0, name.getText(), surname.getText()));
         });
         
         VBox root = new VBox();
@@ -76,4 +77,11 @@ public class App extends Application
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
+
+	@Override
+	public void stop() throws Exception {
+		usersDAO.close();
+	}
+	
+	
 }
