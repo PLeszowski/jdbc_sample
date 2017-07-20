@@ -7,9 +7,14 @@
 
 <VBox fx:controller="pl.rozkocha.szymon.MainController"
 	  xmlns:fx="http://javafx.com/fxml">
+	<Label text="User:"/>
 	<TextField fx:id="name"/>
 	<TextField fx:id="surname"/>
 	<Label fx:id="fullName"/>
 	<Button text="Pobierz" onAction="#get"/>
 	<Button text="Dodaj" onAction="#add"/>
+	<Label text="Role:"/>
+	<TextField fx:id="roleName"/>
+	<Button text="Pobierz" onAction="#role_get"/>
+	<Button text="Dodaj" onAction="#role_add"/>
 </VBox>

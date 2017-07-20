@@ -49,6 +49,7 @@ public class App extends Application
         		"localhost", "javadb", "jdbc", "pass123");
 		
 		DatabaseUsersDAO.init(databaseServer);
+		DatabaseRolesDAO.init(databaseServer);
 		
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main.fxml"));
 		
@@ -62,5 +63,6 @@ public class App extends Application
 	@Override
 	public void stop() throws Exception {
 		DatabaseUsersDAO.getInstance().close();
+		DatabaseRolesDAO.getInstance().close();
 	}
 }
