@@ -14,7 +14,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.*;
-import javafx.scene.control.Button;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.*;
 import javafx.fxml.*;
@@ -52,24 +52,27 @@ public class App extends Application
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		TextField name = new TextField();
+		TextField surname = new TextField();
+		Label fullName = new Label();
+		
 		Button btn = new Button();
-        btn.setText("Say 'Hello World'");
-        btn.setOnAction(new EventHandler<ActionEvent>() {
- 
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
-            }
+        btn.setText("Dodaj");
+        btn.setOnAction((event) -> {
+        	fullName.setText(name.getText() + " " + surname.getText());
         });
         
-        StackPane root = new StackPane();
+        VBox root = new VBox();
+        root.getChildren().add(name);
+        root.getChildren().add(surname);
+        root.getChildren().add(fullName);
         root.getChildren().add(btn);
 		
-		//Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
+		//Parent root = FXMLLoader.load(getClass().getResource("./main.fxml"));
 
         Scene scene = new Scene(root, 300, 250);
 
-        primaryStage.setTitle("Hello World!");
+        primaryStage.setTitle("Osoby");
         primaryStage.setScene(scene);
         primaryStage.show();
 	}
