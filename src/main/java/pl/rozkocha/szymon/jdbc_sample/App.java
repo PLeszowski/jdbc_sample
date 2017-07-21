@@ -1,23 +1,16 @@
 package pl.rozkocha.szymon.jdbc_sample;
 
-import java.sql.Connection;
-
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.List;
 
 import com.mysql.jdbc.Driver;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.*;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.stage.*;
-import javafx.fxml.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+
 
 /**
  * Hello world!
@@ -30,17 +23,10 @@ public class App extends Application
     	try {
  			DriverManager.registerDriver(new Driver());
  		} catch (SQLException e1) {
- 			// TODO Auto-generated catch block
  			e1.printStackTrace();
  		}
     	
     	launch(args);
-        
-        /*List<User> users = usersDAO.get();
-        
-        users.forEach((user) -> {
-        	System.out.println(user.toString());
-        });*/
     }
 
 	@Override
@@ -53,7 +39,7 @@ public class App extends Application
 		
 		Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("main.fxml"));
 		
-        Scene scene = new Scene(root, 300, 250);
+        Scene scene = new Scene(root, 400, 500);
 
         primaryStage.setTitle("Osoby");
         primaryStage.setScene(scene);

@@ -4,17 +4,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 
-<VBox fx:controller="pl.rozkocha.szymon.MainController"
+<BorderPane fx:controller="pl.rozkocha.szymon.jdbc_sample.MainController"
 	  xmlns:fx="http://javafx.com/fxml">
-	<Label text="User:"/>
-	<TextField fx:id="name"/>
-	<TextField fx:id="surname"/>
-	<Label fx:id="fullName"/>
-	<Button text="Pobierz" onAction="#get"/>
-	<Button text="Dodaj" onAction="#add"/>
-	<Label text="Role:"/>
-	<TextField fx:id="roleName"/>
-	<Button text="Pobierz" onAction="#role_get"/>
-	<Button text="Dodaj" onAction="#role_add"/>
-</VBox>
+	  <top>
+		  <MenuBar>
+		  	<menus>
+		  		<Menu text="Main">
+		  			<items>
+		  				<MenuItem id="users" text="Users" onAction="#updateView"/>
+		  				<MenuItem id="roles" text="Roles" onAction="#updateView"/>
+		  			</items>
+		  		</Menu>
+		  	</menus>
+		  </MenuBar>
+	  </top>
+	  <center>
+		<BorderPane fx:id="content" minWidth="400" minHeight="400"></BorderPane>
+	  </center>
+</BorderPane>

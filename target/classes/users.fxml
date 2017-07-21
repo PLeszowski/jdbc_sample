@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:controller="pl.rozkocha.szymon.jdbc_sample.UsersController"
+	  xmlns:fx="http://javafx.com/fxml">
+	<Label text="User:"/>
+	<TextField fx:id="name"/>
+	<TextField fx:id="surname"/>
+	<Label fx:id="fullName"/>
+	<Button text="Pobierz" onAction="#get"/>
+	<Button text="Dodaj" onAction="#add"/>
+</VBox>
+
