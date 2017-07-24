@@ -1,6 +1,6 @@
 package pl.rozkocha.szymon.jdbc_sample;
 
-public class User extends Beam{
+public class User extends Bean{
 	private String surname;
 	private Role role;
 

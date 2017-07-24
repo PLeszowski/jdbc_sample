@@ -1,6 +1,6 @@
 package pl.rozkocha.szymon.jdbc_sample;
 
-public class Beam {
+public class Bean {
 	private int id;
 	private String name;
 	
@@ -20,12 +20,12 @@ public class Beam {
 		this.name = name;
 	}
 
-	public Beam(int id, String name) {
+	public Bean(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
 	
-	public Beam() {
+	public Bean() {
 		this.id = 0;
 		this.name = "none";
 	}
