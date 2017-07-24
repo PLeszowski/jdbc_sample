@@ -53,7 +53,11 @@ public class DatabaseRolesDAO implements IDAO<Role> {
 				int id = resultSet.getInt(resultSet.findColumn(ID_COLUMN));
 				String name = resultSet.getString(resultSet.findColumn(NAME_COLUMN));
 				
-				roles.add(new Role(id, name));
+				Role role = new Role();
+				role.setId(id);
+				role.setName(name);
+				
+				roles.add(role);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

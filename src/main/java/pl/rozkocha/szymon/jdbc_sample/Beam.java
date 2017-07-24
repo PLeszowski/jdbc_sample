@@ -24,4 +24,9 @@ public class Beam {
 		this.id = id;
 		this.name = name;
 	}
+	
+	public Beam() {
+		this.id = 0;
+		this.name = "none";
+	}
 }

@@ -23,13 +23,19 @@ public class User extends Beam{
 	public User(int id, String name, String surname) {
 		super(id, name);
 		this.surname = surname;
-		this.role = new Role(1, "default");
+		this.role = new Role(1, "null");
 	}
 
 	public User(int id, String name, String surname, Role role) {
 		super(id, name);
 		this.surname = surname;
 		this.role = role;
+	}
+	
+	public User() {
+		super();
+		this.surname = "";
+		this.role = new Role();
 	}
 
 	@Override
