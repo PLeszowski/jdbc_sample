@@ -6,7 +6,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DatabaseRolesDAO implements RolesDAO {
+public class DatabaseRolesDAO implements IDAO<Role> {
 	private static DatabaseRolesDAO instance = null;
 	
 	public static void init(DatabaseServer server) {
