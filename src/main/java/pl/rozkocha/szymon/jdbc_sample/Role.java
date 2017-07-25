@@ -2,7 +2,34 @@ package pl.rozkocha.szymon.jdbc_sample;
 
 import java.util.Set;
 
-public class Role extends Bean{
+import javax.persistence.*;
+
+@Entity
+@Table(name = "roles")
+public class Role{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String name;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "role_id")
 	private Set<User> users;
 
 	public Set<User> getUsers() {
@@ -14,11 +41,13 @@ public class Role extends Bean{
 	}
 
 	public Role(int id, String name) {
-		super(id, name);
+		this.id = id;
+		this.name = name;
 	}
 	
 	public Role() {
-		super();
+		this.id = 0;
+		this.name = "";
 	}
 
 	@Override

@@ -30,24 +30,23 @@ public class App extends Application
  			e1.printStackTrace();
  		}
     	
-    	Configuration configuration = new Configuration();
-    	configuration.configure(App.class.getClassLoader().getResource("hibernate/hibernate.cfg.xml"));
-    	SessionFactory factory = configuration.buildSessionFactory();
-    	Session session = factory.openSession();
+    	HibernateUsersDAO dao = new HibernateUsersDAO("hibernate/hibernate.cfg.xml");
     	
-    	List<User> users = (List<User>)session.createQuery("from User").list();
+    	List<User> users = dao.get();
     	
-    	/*users.forEach((user) -> {
+    	users.forEach((user) -> {
     		System.out.println(user.toString());
-    	});*/
+    	});
     	
-    	List<Role> roles = (List<Role>)session.createQuery("from Role").list();
+    	System.out.println(dao.getById(1).toString());
+    	
+    	/*List<Role> roles = (List<Role>)session.createQuery("from Role").list();
     	
     	roles.forEach((role) -> {
     		System.out.println(role.toString());
     	});
     	
-    	session.close();
+    	session.close();*/
     	
     	launch(args);
     }

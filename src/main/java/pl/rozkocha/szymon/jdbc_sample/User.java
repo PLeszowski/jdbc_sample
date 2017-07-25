@@ -1,7 +1,34 @@
 package pl.rozkocha.szymon.jdbc_sample;
 
-public class User extends Bean{
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
+public class User {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private int id;
+	private String name;
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	private String surname;
+	@ManyToOne
+    @JoinColumn(name = "role_id")
 	private Role role;
 
 	public String getSurname() {
@@ -21,19 +48,22 @@ public class User extends Bean{
 	}
 	
 	public User(int id, String name, String surname) {
-		super(id, name);
+		this.id = id;
+		this.name = name;
 		this.surname = surname;
 		this.role = new Role(1, "null");
 	}
 
 	public User(int id, String name, String surname, Role role) {
-		super(id, name);
+		this.id = id;
+		this.name = name;
 		this.surname = surname;
 		this.role = role;
 	}
 	
 	public User() {
-		super();
+		this.id = 0;
+		this.name = "";
 		this.surname = "";
 		this.role = new Role();
 	}
