@@ -6,5 +6,11 @@
 			<generator class="identity"></generator>
 		</id>
 		<property name="name"></property>
+		<set name="users" table="users" inverse="true" lazy="true" fetch="join">
+            <key>
+                <column name="role_id" not-null="true" />
+            </key>
+            <one-to-many class="pl.rozkocha.szymon.jdbc_sample.User" />
+        </set>
 	</class>
 </hibernate-mapping>

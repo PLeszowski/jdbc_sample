@@ -37,9 +37,9 @@ public class App extends Application
     	
     	List<User> users = (List<User>)session.createQuery("from User").list();
     	
-    	users.forEach((user) -> {
+    	/*users.forEach((user) -> {
     		System.out.println(user.toString());
-    	});
+    	});*/
     	
     	List<Role> roles = (List<Role>)session.createQuery("from Role").list();
     	
